@@ -24,5 +24,28 @@ Route::post('baitap1', function (Illuminate\Http\Request $request) {
     $discountPrice = $request->input('discountPrice');
     $discountPercent =  $request->input('discountPercent');
     $discountAmount = $discountPrice * $discountPercent * 0.1;
-    return view('show_discount_amount', compact(['discouRequestntPrice', 'discountAmount' , 'discountPercent','productDescription']));
+    return view('show_discount_amount', compact(['discountAmount' , 'discountPercent','productDescription']));
+});
+Route::get('tu_dien_don_gian', function () {
+    return view('tu_dien_don_gian');
+});
+Route::post('tu_dien_don_gian', function (Illuminate\Http\Request $request) {
+    $dictionary = [
+        "hello" => "xin chào",
+        "how" => "thế nào",
+        "book" => "quyển vở",
+        "computer" => "máy tính"
+    ];
+    $textbox = $request->input('textbox');
+    $flag = 0;
+    foreach ($dictionary as $word => $description) {
+        if ($word == $textbox) {
+            echo "Từ: " . $word . ". <br/>Có nghĩa là: " . $description;
+            echo "<br/>";
+            $flag = 1;
+        }
+    }
+    if ($flag == 0) {
+        echo "Không tìm thấy từ cần tra."; 
+}
 });

@@ -1,1 +1,3 @@
-{{ $discountAmount }}
+{{ $discountAmount }}<br>
+{{$discountPercent}}<br>
+{{$productDescription}}
