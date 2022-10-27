@@ -48,4 +48,25 @@ Route::post('tu_dien_don_gian', function (Illuminate\Http\Request $request) {
     if ($flag == 0) {
         echo "Không tìm thấy từ cần tra."; 
 }
+
+$dictionarys = [
+    "xin chào"  =>"hello" ,
+    "thế nào"  => "how",
+    "quyển vở" => "book",
+    "máy tính" =>  "computer"
+];
+$tiengviet = $request->input('tiengviet');
+$flag = 0;
+foreach ($dictionarys as $word => $description) {
+    if ($word == $tiengviet) {
+        echo "Từ: " . $word . ". <br/>Có nghĩa là: " . $description;
+        echo "<br/>";
+        $flag = 1;
+    }
+}
+if ($flag == 0) {
+    echo "Không tìm thấy từ cần tra."; 
+}
+
+
 });
