@@ -10,11 +10,13 @@
 <body>
 <form class="table" action="" method="post">
     @csrf
-  <label for="fname">Nhập từ tiếng anh muốn dịch</label><br>
+  <label for="fname">Nhập từ muốn dịch :</label><br>
   <input type="text" placeholder="Nhập vào đây" name="textbox" ><br>
-  <label for="fname">Nhập từ tiếng việt muốn dịch</label><br>
-  <input type="text" placeholder="Nhập vào đây" name="tiengviet" ><br>
-  <input class="btn btn-info" type="submit"  value="Dịch">
+  <select id="cars" name="dich">
+  <option value="tienganh" >Dịch tiếng anh sang tiếng việt</option>
+  <option value="tiengviet" >Dịch tiếng việt sang tiếng anh</option>
+</select><br>
+  <input class="btn btn-info" type="submit" value="Dịch">
 </form> 
 </body>
 </html>
