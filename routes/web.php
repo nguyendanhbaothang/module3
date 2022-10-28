@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,34 +24,60 @@ Route::get('/', function () {
 Route::group([
     'prefix' => 'products'
 ], function () {
-    Route::get('/', function () {
-        echo 'trang danh sách ';
-    })->name('products.index');
+    // Route::get('/', function () {
+    //     echo 'trang danh sách ';
+    // })->name('products.index');
 
-    Route::get('create', function () {
-        echo 'trang thêm mới ';
-    })->name('products.create');
+     // Route::get('create', function () {
+    //     echo 'trang thêm mới ';
+    // })->name('products.create');
 
-    Route::post('store', function () {
-        echo 'xử lí thêm mới ';
-    })->name('products.store');
+    // Route::post('store', function () {
+    //     echo 'xử lí thêm mới ';
+    // })->name('products.store');
 
-    Route::get('show{id}', function ($id) {
-        echo 'xem chi tiết ' . $id;
-    })->name('products.show');
+     // Route::get('show/{id}', function ($id) {
+    //     echo 'xem chi tiết ' . $id;
+    // })->name('products.show');
 
-    Route::get('edit{id}', function ($id) {
-        echo 'trang cập nhật ' . $id;
-    })->name('products.edit');
+    // Route::get('edit/{id}', function ($id) {
+    //     echo 'trang cập nhật ' . $id;
+    // })->name('products.edit');
 
-    Route::put('update{id}', function ($id) {
-        echo 'xử lí cập nhật ' . $id;
-    })->name('products.update');
 
-    Route::delete('destroy{id}', function ($id) {
-        echo 'xóa ' . $id;
-    })->name('products.destroy');
+    // Route::put('update/{id}', function ($id) {
+    //     echo 'xử lí cập nhật ' . $id;
+    // })->name('products.update');
+
+    // Route::delete('destroy/{id}', function ($id) {
+    //     echo 'xóa ' . $id;
+    // })->name('products.destroy');
+
+
+
+Route::get('/create',[ProductController::class,'create'])->name('products.create')->middleware('checkage');
+Route::post('/',[ProductController::class,'store'])->name('products.store');
+Route::get('/{id}',[ProductController::class,'show'])->name('products.show');
+Route::get('/{id}/edit',[ProductController::class,'edit'])->name('products.edit');
+Route::put('/{id}',[ProductController::class,'update'])->name('products.update');
+Route::delete('/{id}',[ProductController::class,'destroy'])->name('products.destroy');
+
+
+
+
+
+Route::get('/',[ProductController::class,'showform'])->name('products.showform');
+Route::post('/baitapmaytinh',[ProductController::class,'hienthi'])->name('products.baitapmaytinh');
+
+
+
 });
+Route::resource('customers',CustomerController::class);
+
+
+
+
+
 
 
 
@@ -111,3 +140,12 @@ Route::post('tu_dien_don_gian', function (Illuminate\Http\Request $request) {
             break;
     }
 });
+Route::get('kiem_tra_email', function () {
+    return view('kiem_tra_email');
+});
+Route::post('kiem_tra_email', [UserController::class, 'validationEmail'])->name('checkEmail');
+
+
+
+
+
