@@ -1,3 +1,6 @@
+@extends('layout.master')
+@section('content')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +20,8 @@
   <label for="lname">Discount Percent</label><br>
   <input type="text" id="lname" name="discountPercent"><br><br>
   <input class="btn btn-info" type="submit" value="Submit">
-</form> 
+</form>
 </body>
 </html>
+
+@endsection
