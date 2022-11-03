@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('users',UserController::class);
+Route::get('/search', [UserController::class, 'search'])->name('users.search');
 
 Route::get('manyToMany', function () {
     $user = User::find(1);
@@ -27,6 +28,6 @@ Route::get('manyToMany', function () {
 });
 
 Route::get('manyToMany2', function () {
-    $task = Task::find(3);
+    $task = Task::find(2);
     dd($task->users->toArray());
 });

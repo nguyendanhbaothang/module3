@@ -5,6 +5,21 @@
 
 <a class="btn btn-primary" href="{{route('users.create')}}">Thêm </a>
 <table class="table">
+    <div class="col-6">
+        <form class="navbar-form navbar-left" action="{{route('users.search')}}" method="GET">
+            @csrf
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" placeholder="Search">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <thead>
       <tr>
         <th scope="col">Số thứ tự</th>
@@ -37,5 +52,6 @@
 
     </tbody>
   </table>
+  {{ $users->appends(request()->query()) }}
 </div>
   @endsection
