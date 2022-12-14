@@ -11,4 +11,9 @@ class Blog extends Model
     protected $table = 'blogs';
     protected $primaryKey = 'id';
     public $timestamps  = true;
+
+    public function category(){
+        return $this->belongsTo(Category::class,'category_id','id');
+
+    }
 }

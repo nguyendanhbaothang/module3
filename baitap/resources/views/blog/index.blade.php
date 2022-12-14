@@ -21,7 +21,7 @@
             <th scope="row">{{$key+1}}</th>
             <td>{{$team->name}}</td>
             <td>{{$team->description}}</td>
-            <td>{{$team->category_id }}</td>
+            <td>{{$team->category->name }}</td>
 
 
             </div>
@@ -37,8 +37,11 @@
           </tr>
 @endforeach
 
-
     </tbody>
   </table>
-
+  <div class="links">
+    <a href="{{ route('show.login') }}">
+        <button type="button" class="btn btn-outline-primary">Đăng xuất</button>
+    </a>
+</div>
 @endsection

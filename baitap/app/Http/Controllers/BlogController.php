@@ -16,9 +16,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::get();
-        $categories = Category::get();
-        return view('blog.index', compact(['blogs','categories']));
+        $blogs = Blog::with('category')->get();
+        // dd($blogs);
+        return view('blog.index', compact(['blogs']));
 
     }
 

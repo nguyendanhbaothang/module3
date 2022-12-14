@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Models\Order;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,36 +56,6 @@ Route::get('hasOne', function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::group([
     'prefix' => 'products'
 ], function () {
@@ -90,7 +63,7 @@ Route::group([
     //     echo 'trang danh sách ';
     // })->name('products.index');
 
-     // Route::get('create', function () {
+    // Route::get('create', function () {
     //     echo 'trang thêm mới ';
     // })->name('products.create');
 
@@ -98,7 +71,7 @@ Route::group([
     //     echo 'xử lí thêm mới ';
     // })->name('products.store');
 
-     // Route::get('show/{id}', function ($id) {
+    // Route::get('show/{id}', function ($id) {
     //     echo 'xem chi tiết ' . $id;
     // })->name('products.show');
 
@@ -114,29 +87,18 @@ Route::group([
     // Route::delete('destroy/{id}', function ($id) {
     //     echo 'xóa ' . $id;
     // })->name('products.destroy');
-Route::get('/create',[ProductController::class,'create'])->name('products.create')->middleware('checkage');
-Route::post('/',[ProductController::class,'store'])->name('products.store');
-Route::get('/{id}',[ProductController::class,'show'])->name('products.show');
-Route::get('/{id}/edit',[ProductController::class,'edit'])->name('products.edit');
-Route::put('/{id}',[ProductController::class,'update'])->name('products.update');
-Route::delete('/{id}',[ProductController::class,'destroy'])->name('products.destroy');
+    Route::get('/create', [ProductController::class, 'create'])->name('products.create')->middleware('checkage');
+    Route::post('/', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/{id}', [ProductController::class, 'show'])->name('products.show');
+    Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/{id}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-Route::get('/',[ProductController::class,'showform'])->name('products.showform');
-Route::post('/baitapmaytinh',[ProductController::class,'hienthi'])->name('products.baitapmaytinh');
-
+    Route::get('/', [ProductController::class, 'showform'])->name('products.showform');
+    Route::post('/baitapmaytinh', [ProductController::class, 'hienthi'])->name('products.baitapmaytinh');
 });
-Route::resource('customers',CustomerController::class);
-Route::resource('books',BookController::class);
-
-
-
-
-
-
-
-
-
-
+Route::resource('customers', CustomerController::class);
+Route::resource('books', BookController::class);
 
 
 Route::get('baitap1', function () {
@@ -200,7 +162,36 @@ Route::get('kiem_tra_email', function () {
 });
 Route::post('kiem_tra_email', [UserController::class, 'validationEmail'])->name('checkEmail');
 
+Route::get('tao-session', function (Request $request) {
+    //code tạo
+    $request->session()->put('ho_va_ten', 'nguyen_danh_bao_thang');
+});
+Route::get('lay-session', function (Request $request) {
+    //code lay
+    $value = $request->session()->get('ho_va_ten');
+    echo $value;
+});
+Route::get('xoa-session', function (Request $request) {
+    //code xoa
+    $request->session()->forget('ho_va_ten');
+});
+Route::get('tao-cookie', function () {
+    $minutes = 60;
+    $response = new Illuminate\Http\Response('Hello World');
+    $response->withCookie(cookie('ho_va_ten', 'Thắng', $minutes));
+    return $response;
+});
+Route::get('lay-cookie', function (Request $request) {
+    $value = $request->cookie('ho_va_ten');
+    echo $value;
+});
 
 
 
-
+Route::get('test-lang/{locale}', function ($locale) {
+    App::setLocale($locale);
+    // echo __('message.welcome',['name' => 'Cu Nhân']);
+    echo trans_choice('message.minutes_ago', 1);
+// echo trans_choice('message.minutes_ago', 1, ['value' => 5]);
+    // echo __('Welcome to Website!');
+});

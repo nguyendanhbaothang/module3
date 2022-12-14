@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+    <input type="button" value="Click Hide" id="btn_hide">
+    <input type="button" value="Click Show" id="btn_show">
+    <p id="ket_qua">Hiển thị</p>
+    <script>
+        // cú pháp
+        // $(selector).action()
+        // selector:$
+        // -tag
+        // -id
+        // -class
+        $('#btn_hide').click(function(){
+            // alert('click me');
+        $('#ket_qua').hide();
+
+       });
+       $('#btn_show').click(function(){
+        // alert('btn_show click');
+        $('#ket_qua').show();
+       });
+    </script>
+</body> 
+</html>

@@ -38,12 +38,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->name;
+            $category = new Category();
+            $category->name = $request->name;
         $category->description = $request->description;
 
 
-    $category->save($request->all());
 
         return redirect('category');
     }

@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
-<h2>Sửa</h2>
+<h2>Chỉnh sửa người dùng</h2>
 <div class="container">
     <form method="POST" action="{{route('users.update',[$user->id])}}" enctype= "multipart/form-data" >
     @csrf
@@ -16,7 +16,7 @@
     </div>
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">password</label>
-        <input type="password" class="form-control" name="password" id="exampleInputEmail1"value="{{$user->password }}" aria-describedby="emailHelp">
+        <input type="text" class="form-control" name="password" id="exampleInputEmail1"value="{{$user->password }}" aria-describedby="emailHelp">
       </div>
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">phone</label>

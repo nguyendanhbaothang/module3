@@ -11,4 +11,16 @@ class Category extends Model
       protected $table = 'categories';
     protected $primaryKey = 'id';
     public $timestamps  = true;
+
+    public function blog(){
+        /*
+        categories
+        id
+        books
+        category_id
+        */
+        return $this->hasMany(Blog::class,'category_id','id');
+    }
+
 }
+

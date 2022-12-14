@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
-<h1>Danh sách</h1>
+<h1>Danh sách người dùng</h1>
 <div class="container">
 
 <a class="btn btn-primary" href="{{route('users.create')}}">Thêm </a>
@@ -34,7 +34,7 @@
         @foreach ($users as $key => $team)
         <tr>
             <th scope="row">{{$key+1}}</th>
-            <td>{{$team->name}}</td>
+            <td>{{$team->category_id}}</td>
             <td>{{$team->email }}</td>
             <td>{{$team->password }}</td>
             <td>{{$team->phone }}</td>
@@ -42,7 +42,7 @@
                     <form action="{{route('users.destroy',[$team->id])}}" method="post">
                         @method('DELETE')
                         @csrf
-                        <button onclick="return confirm('Bạn có muốn xóa truyện này không?');" class="btn btn-danger">Xóa</button>
+                        <button onclick="return confirm('Bạn có chắc chắn xóa không?');" class="btn btn-danger">Xóa</button>
                         <a href="{{route('users.edit',[$team->id])}}" class="btn btn-primary">Sửa</a>
                     </form>
             </td>

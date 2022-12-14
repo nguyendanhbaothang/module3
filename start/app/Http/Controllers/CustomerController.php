@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -13,18 +15,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +27,8 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
     }
 
     /**
@@ -81,44 +75,4 @@ class CustomerController extends Controller
     {
         //
     }
-
-     
-
-//     /**
-//      * Display a listing of the resource.
-//      *
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function maytinh()
-//     {
-
-// if($sothunhat!="" && $sothuhai!= ""){
-//     switch ($pheptinh) {
-//         case '+':
-//             $ketqua = $sothunhat + $sothuhai;
-//             echo $ketqua ;
-//             break;
-//             case '-':
-//                 $ketqua = $sothunhat - $sothuhai;
-//                 echo $ketqua ;
-//                 break;
-//                 case '*':
-//                     $ketqua = $sothunhat * $sothuhai;
-//                     echo $ketqua ;
-//                     break;
-//                     case '/':
-//                         if($sothuhai == 0){
-//                             echo 'lỗi';
-//                         }else{
-//                             $ketqua = $sothunhat / $sothuhai;
-//                             echo $ketqua ;
-//                         }
-//                         break;
-//     }}else{
-//         echo 'nhập số đi thằng ngu';
-//     }
-
-
-//     }
-
 }

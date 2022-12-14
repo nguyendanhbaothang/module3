@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserRequest;
+use Dotenv\Validator;
 
 class UserController extends Controller
 {
@@ -33,11 +34,27 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
+    //     $validated = $request->validate([
+    //         'name' => 'required|unique:users|max:200',
+    //         'email' => 'required',
+    //         'password' => 'required',
+    //         'phone' => 'required'
+    //     ],
+    //         [
+    //             'name.required'=>'Không được để trống',
+    //             'name.unique'=>'Không được trùng lặp dữ liệu',
+    //             'name.max'=>'Trường bắt buộc bé hơn :max',
+    //             'email.required'=>'Không được để trống',
+    //             'password.required'=>'Không được để trống',
+    //             'phone.required'=>'Không được để trống'
+    //         ]
+    // );
+
         $user = new User();
         $user->name = $request->name;
         $user->email  = $request->email ;
@@ -45,7 +62,7 @@ class UserController extends Controller
         $user->phone  = $request->phone ;
 
 
-    $user->save($request->all());
+    $user->save();
 
         return redirect('users');
     }
@@ -109,7 +126,7 @@ class UserController extends Controller
     if (!$search) {
         return redirect()->route('users.index');
     }
-    $users = User::where('name', 'LIKE', '%' . $search . '%')->paginate(3);
+    $users = User::where('name', 'LIKE', '%' . $search . '%')->paginate();
 
     return view('user.index', compact('users'));
 }
